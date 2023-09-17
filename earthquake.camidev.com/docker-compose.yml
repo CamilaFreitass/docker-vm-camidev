@@ -1,0 +1,25 @@
+version: '3.5'
+services:
+  api:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    working_dir: /code
+    volumes:
+      - ./:/code
+      - /code/node_modules
+    environment:
+      - VIRTUAL_HOST=earthquake.camidev.com
+      - LETSENCRYPT_HOST=earthquake.camidev.com
+      - LETSENCRYPT_EMAIL=hello@camidev.com
+      - NODE_ENV=production
+      - PORT=3000
+    expose:
+      - 3000
+    command: 'npm start'
+    networks:
+      - application
+
+networks:
+  application:
+    external: true

@@ -1,0 +1,28 @@
+version: '3.5'
+services:
+  # Banco de dados para o wordpress
+  mysql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      - WORDPRESS_DB_PASSWORD=alguma_senha_forte
+    networks:
+      - application
+
+  # Container do WordPress para nosso Blog
+  blog:
+    image: wordpress:php7.0-apache
+    restart: always
+    expose:
+      - 80
+    environment:
+      - VIRTUAL_HOST=camidev.com
+      - LETSENCRYPT_HOST=camidev.com
+      - LETSENCRYPT_EMAIL=hello@camidev.com
+      - MYSQL_ROOT_PASSWORD=alguma_senha_forte
+    networks:
+      - application
+
+networks:
+  application:
+    external: true
