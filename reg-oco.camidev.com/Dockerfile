@@ -11,7 +11,8 @@ RUN echo "SECRET_KEY=sua_chave_aqui" >> /app/reg-oco/.env && \
     echo "ALLOWED_HOSTS=localhost" >> /app/reg-oco/.env
 
 WORKDIR /app/reg-oco/temp
-RUN python /app/reg-oco/manage.py migrate
+WORKDIR /app/reg-oco
+RUN python manage.py migrate
 
 EXPOSE 8000
 CMD ["python", "/app/reg-oco/manage.py", "runserver", "0.0.0.0:8000"]
