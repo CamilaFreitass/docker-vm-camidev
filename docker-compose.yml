@@ -1,27 +1,16 @@
 version: '3'
 services:
-  nginx-proxy:
-    container_name: 'nginx-proxy'
-    image: jwilder/nginx-proxy
-    restart: always
-    volumes:
-      - vhost:/etc/nginx/vhost.d
-      - html:/usr/share/nginx/html
-      - certs:/etc/nginx/certs:ro
-      - /var/run/docker.sock:/tmp/docker.sock:ro
-    labels:
-      - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy"
+  aplicacao1:
+    image: camidev.com
     ports:
-      - 80:80
-      - 443:443
-    networks:
-      - web
+      - 8084:80
 
-networks:
-  web:
-    external: true
+  aplicacao2:
+    image: earthquake.camidev.com
+    ports:
+      - 8085:8000
 
-volumes:
-  certs:
-  html:
-  vhost:
+  aplicacao3:
+    image: reg-oco.camidev.com
+    ports:
+      - 8086:8000
