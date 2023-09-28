@@ -16,6 +16,4 @@ Docker compose:
 
 2.docker build -t nome_da_imagem_da_aplicacao .
 
-3. cd docker-compose.yml
-
-4. docker-compose up -d
+3.docker-compose up -d
